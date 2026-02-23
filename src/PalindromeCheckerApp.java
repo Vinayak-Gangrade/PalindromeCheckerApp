@@ -1,24 +1,36 @@
 import java.util.Scanner;
 
-class UseCase3PalindromeCheckerApp {
+class UseCase4PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        // Take input from user
+        // Take input
         System.out.print("Enter a string: ");
-        String original = sc.nextLine();
+        String text = sc.nextLine();
 
-        // Reverse the string using loop
-        String reversed = "";
+        // Convert string to character array
+        char[] arr = text.toCharArray();
 
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        // Two-pointer technique
+        int start = 0;
+        int end = arr.length - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+
+            if (arr[start] != arr[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
 
-        // Compare original and reversed
-        if (original.equals(reversed)) {
+        // Display result
+        if (isPalindrome) {
             System.out.println("It is a Palindrome");
         } else {
             System.out.println("It is NOT a Palindrome");
