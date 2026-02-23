@@ -1,19 +1,8 @@
-// UseCase9PalindromeCheckerApp.java
+// UseCase10PalindromeCheckerApp.java
 
 import java.util.Scanner;
 
-class UseCase9PalindromeCheckerApp {
-
-    static boolean isPalindrome(String str, int start, int end) {
-
-        if (start >= end)
-            return true;
-
-        if (str.charAt(start) != str.charAt(end))
-            return false;
-
-        return isPalindrome(str, start + 1, end - 1);
-    }
+class UseCase10PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
@@ -21,7 +10,23 @@ class UseCase9PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String text = sc.nextLine();
 
-        if (isPalindrome(text, 0, text.length() - 1))
+        // Normalize string (remove spaces & ignore case)
+        String normalized = text.replaceAll("\\s+", "").toLowerCase();
+
+        int start = 0;
+        int end = normalized.length() - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        if (isPalindrome)
             System.out.println("It is a Palindrome");
         else
             System.out.println("It is NOT a Palindrome");
